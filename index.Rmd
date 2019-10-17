@@ -13,6 +13,10 @@ output:
 
 # Let's add some links
 
+You can learn about me [here](about.Rmd)
+
+This google link doesn't work...
+
 I often use [google](https://www.google.com) to do data science.
 
 ## Let's add an image
