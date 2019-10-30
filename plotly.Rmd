@@ -30,16 +30,17 @@ rest_clean = mutate(rest_inspec, grade_date = as.character(grade_date)) %>%
   separate(col = grade_date, into = c("year", "month", "day"), sep="-") %>% 
   select(-building, -camis, -street, -zipcode, -phone, -record_date, -violation_code) %>% 
   drop_na(grade, year) %>%
-  filter(grade == "A" | grade == "B" | grade == "C") %>% 
+  filter(grade == "A" | grade == "B" | grade == "C", boro != "Missing", year != "2012") %>% 
   mutate(
     is_a = (grade == "A")
   ) %>% 
-  group_by(year) %>% 
+  group_by(boro, year) %>% 
   summarize(
     prop_a = sum(is_a)/n()
-  )
-
-
+  ) %>% 
+  plot_ly(
+    x = ~year, y = ~prop_a, type = "scatter", mode = "lines+markers",
+    color = ~boro, alpha = 0.5)
 ```
 
 
