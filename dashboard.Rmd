@@ -1,25 +1,19 @@
 ---
-title: "Plotly Examples"
+title: "My first dashboard"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
-## Now this is the plotly page
-
-Testing let's make interactive graphics
-You can add "code_folding: hide" to hide the code
-
-```{r}
+```{r setup, include=FALSE}
+library(flexdashboard)
 library(tidyverse)
 library(viridis)
 library(p8105.datasets)
 
 library(plotly)
 ```
-
-## Plots
 
 ```{r}
 data("nyc_airbnb")
@@ -39,6 +33,12 @@ nyc_airbnb =
   sample_n(5000)
 ```
 
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
 ```{r}
 nyc_airbnb %>%
   mutate(text_label = str_c("Price: $", price, '\nRating: ', rating)) %>% 
@@ -47,12 +47,19 @@ nyc_airbnb %>%
     color = ~price, text = ~text_label, alpha = 0.5)
 ```
 
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
 ```{r}
 nyc_airbnb %>% 
 mutate(neighbourhood = fct_reorder(neighbourhood, price)) %>% 
   plot_ly(y = ~price, color = ~neighbourhood, type = "box",
           colors = "Set2")
 ```
+
+### Chart C
 
 ```{r}
 nyc_airbnb %>% 

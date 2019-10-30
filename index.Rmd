@@ -1,22 +1,16 @@
 ---
-title: "My awesome website"
+title: "Julia Thompson"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
 
-# This is Jeff's awesome website
+## About Me
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+I am currently attending Columbia University for my M.S. in Biostatistics, focusing on theory and methods. I have experience in managing large data sets both in R and SAS. My focus is in statistical analysis and data management, specifically in the clinical trial setting. I am familiar with the theory behind statistical analysis as well as applications and computing practice. 
 
-# Let's add some links
-
-You can learn about me [here](about.html)
-
-This google link doesn't work...
-
-I often use [google](https://www.google.com) to do data science.
+You can find me on LinkedIn [here](www.linkedin.com/in/julia-b-thompson).
 
 ## Let's add an image
 

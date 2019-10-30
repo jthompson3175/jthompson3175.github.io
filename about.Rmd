@@ -1,5 +1,5 @@
 ---
-title: "Another page"
+title: "Resume"
 output: 
   html_document:
     toc: true
@@ -8,4 +8,4 @@ output:
 
 ## Hello
 
-My name is Julia and I hope this works.
+My name is Julia and I hope this works- I'll put my resume here.
