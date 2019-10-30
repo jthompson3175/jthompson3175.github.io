@@ -6,6 +6,72 @@ output:
     toc_float: true
 ---
 
-## Hello
+## Resume
 
-My name is Julia and I hope this works- I'll put my resume here.
+JULIA THOMPSON
+
+525 West 158th St. New York, NY | 336.687.3514 | julia.thompson@columbia.edu 
+
+EDUCATION
+
+Master of Science in Biostatistics
+
+Columbia University Mailman School of Public Health	May 2021 Expected
+
+Bachelor of Science in Public Health in Biostatistics
+
+University of North Carolina at Chapel Hill Gillings School of Global Public Health
+
+Major GPA: 4.0 | Overall GPA: 3.467 | Dean’s List: 3 semesters	May 2018
+
+EXPERIENCE	
+
+Analyst
+
+Corvid Technologies	_June 2018 to June 2019_
+
+* Created a cashflow analysis tool for predictions and insight into the company’s accounts, reducing the finance team’s time investment by 15%
+
+* Developed ways to streamline internal accounting and finance processes
+
+Research Presentation _October 2016_
+
+International Conference of Undergraduate Research,
+
+International Conference on Advances in Interdisciplinary Statistics and Combinatorics
+
+* Explained copy number variation algorithm creation process, relevance, and validation as well as presented findings from a series of breast cancer trials	
+
+Research Education for Undergraduates in Mathematical Biology
+University of North Carolina at Greensboro	_May 2016 to August 2016_
+
+*	Developed an algorithm for detecting significant copy number variations across patient using R
+
+*	Tested the algorithm through simulations and real data comparisons to other methods 	
+
+LEADERSHIP AND ACTIVITIES	
+
+President and Founder
+
+Carolina Cystic Fibrosis Friends	_December 2014 to May 2018_
+
+* Managed a club that partnered with UNC Hospitals and volunteered with adult Cystic Fibrosis patients, visiting 8-10 patients and families per month
+
+*	Helped raise over $30,000 for Cystic Fibrosis research	
+
+VP of Marketing Student United Way	_October 2015 to May 2018_
+
+* Designed and enacted advertising campaigns to promote the club and service opportunities for all students 	
+Study Abroad Dublin Ireland	_May 2017 to August 2017_
+
+*	Studied genetics and Irish mythology 	
+
+TECHNICAL SKILLS
+
+Working Knowledge: R, SAS, Excel, Visual Basic, Microsoft Office 
+
+Introductory Knowledge: MatLab, C, Python, LaTeX
+
+RELEVANT COURSEWORK
+
+Biostatistical Methods | Data Science | Principals of Experimental Analysis | Epidemiology | Elementary Probability and Statistical Inference | Linear Algebra | Sample Survey Methodology
