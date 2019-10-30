@@ -6,16 +6,16 @@ output:
     toc_float: true
 ---
 
-## About Me
+## About Me  
+
+<div align="left"><img src="professional_pic.jpg" width="150px"></div>
 
 I am currently attending Columbia University for my M.S. in Biostatistics, focusing on theory and methods. I have experience in managing large data sets both in R and SAS. My focus is in statistical analysis and data management, specifically in the clinical trial setting. I am familiar with the theory behind statistical analysis as well as applications and computing practice. 
 
 You can find me on LinkedIn [here](https://www.linkedin.com/in/julia-b-thompson/).
 
-## Let's add an image
+Click the _Resume_ tab above to learn more about my relevant experience.
 
-I don't like cats
 
-![]()
 
 
