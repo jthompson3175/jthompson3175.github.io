@@ -1,28 +1,27 @@
 ---
-title: "Resume"
+title: "Julia Thompson"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
 
-JULIA THOMPSON
 
 525 West 158th St. New York, NY | 336.687.3514 | julia.thompson@columbia.edu 
 
-#### EDUCATION
+### EDUCATION
 
 Master of Science in Biostatistics
 
-Columbia University Mailman School of Public Health	May 2021 Expected
+Columbia University Mailman School of Public Health	_May 2021_
 
 Bachelor of Science in Public Health in Biostatistics
 
-University of North Carolina at Chapel Hill Gillings School of Global Public Health
+University of North Carolina at Chapel Hill Gillings School of Global Public Health _May 2018_
 
-Major GPA: 4.0 | Overall GPA: 3.467 | Dean’s List: 3 semesters	May 2018
+Major GPA: 4.0 | Overall GPA: 3.467 | Dean’s List: 3 semesters
 
-#### EXPERIENCE	
+### EXPERIENCE	
 
 Analyst
 
@@ -47,7 +46,7 @@ University of North Carolina at Greensboro	_May 2016 to August 2016_
 
 *	Tested the algorithm through simulations and real data comparisons to other methods 	
 
-#### LEADERSHIP AND ACTIVITIES	
+### LEADERSHIP AND ACTIVITIES	
 
 President and Founder
 
@@ -64,12 +63,12 @@ Study Abroad Dublin Ireland	_May 2017 to August 2017_
 
 *	Studied genetics and Irish mythology 	
 
-#### TECHNICAL SKILLS
+### TECHNICAL SKILLS
 
 Working Knowledge: R, SAS, Excel, Visual Basic, Microsoft Office 
 
 Introductory Knowledge: MatLab, C, Python, LaTeX
 
-#### RELEVANT COURSEWORK
+### RELEVANT COURSEWORK
 
 Biostatistical Methods | Data Science | Principals of Experimental Analysis | Epidemiology | Elementary Probability and Statistical Inference | Linear Algebra | Sample Survey Methodology
