@@ -19,6 +19,30 @@ library(p8105.datasets)
 library(plotly)
 ```
 
+## For homework:
+
+```{r}
+data(rest_inspec)
+```
+
+```{r}
+rest_clean = mutate(rest_inspec, grade_date = as.character(grade_date)) %>% 
+  separate(col = grade_date, into = c("year", "month", "day"), sep="-") %>% 
+  select(-building, -camis, -street, -zipcode, -phone, -record_date, -violation_code) %>% 
+  drop_na(grade, year) %>%
+  filter(grade == "A" | grade == "B" | grade == "C") %>% 
+  mutate(
+    is_a = (grade == "A")
+  ) %>% 
+  group_by(year) %>% 
+  summarize(
+    prop_a = sum(is_a)/n()
+  )
+
+
+```
+
+
 ## Plots
 
 ```{r}
