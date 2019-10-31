@@ -1,5 +1,5 @@
 ---
-title: "My first dashboard"
+title: "NYC Restaurant Inspection Data"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -30,7 +30,7 @@ rest_clean =
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Proportion of Restaurants with Grade "A" by Year
 
 ```{r}
 rest_clean %>% 
@@ -47,7 +47,7 @@ rest_clean %>%
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Count of Restaurant Grade by Borough
 
 ```{r}
 rest_clean %>% 
@@ -59,7 +59,7 @@ rest_clean %>%
           color = ~grade, alpha = 0.5)
 ```
 
-### Chart C
+### Distribution of Score by Borough
 
 ```{r}
 rest_clean %>% 

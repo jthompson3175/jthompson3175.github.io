@@ -7,7 +7,7 @@ navbar:
       href: resume.html
     - text: "Dashboard"
       href: dashboard.html
-    - text: "Plotly"        
+    - text: "Sample Code"        
       href: plotly.html
     - icon: fa-envelope fa-lg
       href: mailto:jbennett010@gmail.com
