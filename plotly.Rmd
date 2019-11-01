@@ -8,7 +8,7 @@ output:
 
 ## Description of Data
 
-The New York City Department of Health and Mental Hygiene (DOHMH) conducts unannounced restaurant inspections on an annual basis in order to check for compliance with policies on food handling, food temperature, personal hygiene of restaurant workers, and vermin control. Regulation violations are each worth a pre-specified number of points, which are totaled at the end of the inspection. Scores are converted into grades, where a lower score earns a higher grade.
+The data used were from the NYC Department of Health and Mental Hygiene annual restaurant inspections. Violations of health codes result in the restaurant being given a certain number of points, described below. While the data includes observations from 2012, we exclude them in our analysis because there was not data for each of the 5 boroughs. We include observations on each of the 5 boroughs from 2013 through 2017. Additionally, we exclude restaurants with a grade of NA, or anything that was not an A, B, or C. Some of the restaurants had inspections that were ongoing; these were excluded as well. 
 
 Each violation falls into one of three categories:
 
@@ -18,9 +18,6 @@ A critical violation, such as improperly washing raw vegetables prior to serving
 
 A general violation, such as improperly sanitizing cookware, results in a minimum score of 2
 
-Additional points can then be assigned based on the severity of the violation, ranging from 1-5, at the discretion of the inspector.
-
-Data on restaurant inspection results are publicly available at NYC Open Data and are updated daily. The specific data to be used in this class, linked to at the top of this page, was accessed in October 2017 using the code below.
 
 ## Sample Code
 
