@@ -1,5 +1,5 @@
 ---
-title: "Sample Code"
+title: "NYC Restaurant Inspections"
 output: 
   html_document:
     toc: true

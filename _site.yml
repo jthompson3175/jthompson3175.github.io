@@ -7,12 +7,16 @@ navbar:
       href: resume.html
     - text: "Dashboard"
       href: dashboard.html
-    - text: "Sample Code"        
-      href: plotly.html
+    - text: "Sample Projects"
+      menu: 
+      - text: "NYC Restaurant Inspections"
+        href: plotly.html
+      - text: "Opioids in NY"
+        href: opioids.html
     - icon: fa-envelope fa-lg
       href: mailto:jbennett010@gmail.com
     - icon: fa-github fa-lg
       href: http://github.com/jthompson3175/
 output:
   html_document:
-    theme: journal
+    theme: yeti

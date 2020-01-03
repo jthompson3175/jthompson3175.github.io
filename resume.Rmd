@@ -23,6 +23,14 @@ Major GPA: 4.0 | Overall GPA: 3.467 | Dean’s List: 3 semesters
 
 ### EXPERIENCE	
 
+Data Science Intern
+
+Global Healthy Living Foundation _December 2019 to May 2020_
+
+* Clean, analyze, and interpret data from patient-centered research 
+
+* Assist in the dissemination of research results to patient populations and various journals
+
 Analyst
 
 Corvid Technologies	_June 2018 to June 2019_
