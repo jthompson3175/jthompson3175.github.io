@@ -1,8 +1,8 @@
 ---
 title: "Opioids in NY"
-author: "Julia Thompson"
-date: "1/3/2020"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -29,7 +29,6 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 
 ## Description of Data
 
-
   **amfAR Data: [Distance to Treatment Facility](<https://opioid.amfar.org/about/sources>)**
     amfAR is a non-profit which publishes data related to the HIV epidemic. The data set we utilized contains the average distance from each county to an opioid related treatment facility. 
     
@@ -41,5 +40,158 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
     
   **Government Data: [Medication Take-Back Facilities](<https://catalog.data.gov/>)**
     Finally, we used government data which provided the location of medication take-back facilities. This data was limited to counties in New York state, and the distance was mapped against opioid related deaths and treatments. The medication take-back facility data was collected in 2017.
+
+# Exploratory Analysis
+
+We loaded and cleaned the data, filtering by relevant years and joining appropriate datasets. For code on how the animated graphics were generated, you can view the _animated_graphs.rmd_ file [here](<https://github.com/Akbarnejadhn/p8105_fnl_project/blob/master/animated_graphs.Rmd>) on our GitHub repository.
+
+```{r, message = FALSE}
+
+opioid_death_data = janitor::clean_names(read_csv('./data/opioid_related_deaths_2.csv'))
+
+opioid_treatment_distance = janitor::clean_names(read_csv('./data/distance_to_treatment.csv'))
+
+opioid_demographics = janitor::clean_names(read_csv("./data/opioid_demographics.csv"))
+
+opioid_er_data = read_csv('./data/opioid_related_visits.csv') %>% 
+  janitor::clean_names()
+
+prod_county = arcos::summarized_county_annual(state = "NY", key = "WaPo") %>% 
+  janitor::clean_names()
+
+county_pop = arcos::county_population(state = "NY", key = "WaPo") %>% 
+  janitor::clean_names()
+
+# clean opioid death data #
+
+opioid_death_data = opioid_death_data %>%
+  filter(year >= 2010) %>% 
+  mutate(county = recode(county, "Kings (Brooklyn)" = "Kings",
+                         "New York (Manhattan)" = "New York",
+                         "St Lawrence" = "St. Lawrence"))
+
+# clean opioid er data #
+
+opioid_er_data = opioid_er_data %>% 
+  select(year, patient_county_name, rural_urban, payer, er_opioid, inpatient_total_opioid, er_inpatient_total_opioid, outpatient_opioid, overall_opioid) %>%
+  rename(county = patient_county_name)
+
+# Combine Data Sets #
+
+opioid_total_data = left_join(opioid_er_data, opioid_death_data, by = c('county', 'year')) %>% 
+  arrange(county, year)
+```
+
+In our analysis, we created a series of graphs and animations which detail how the opioid crisis is affecting New Yorkers in different areas of the state over time. The information below is synthesized from the results of our analysis.
+
+Initially, we were interested in how demographics altered opioid addiction over time. We broke down the death count by age, race and gender. The plots, which are included under the demographics tab in analysis, show the following trends related to opioid overdosing.   
+  
+* There are significantly more men than women who die of opioid related deaths. In recent years that differential has only increased.
+
+```{r death_sex, message = FALSE} 
+opioid_demographics %>% 
+  filter(region == "NYC") %>% 
+  group_by(year, sex) %>% 
+  summarize(
+    count = sum(opioid_poisoning_deaths)
+  ) %>% 
+  plot_ly(x = ~year, y = ~count, type = "bar",
+          color = ~sex, alpha = 0.5)
+```
+  
+* Non-Hispanic white people are more likely to die of opioid poisoning compared to people of other races/ethnicities, on average. Though there has been an increase in opioid related deaths for all ethnicities, white non-Hispanic people continue to be at higher risk for opioid poisoning.
+     
+```{r load2, message=FALSE}
+deaths_age_grp = read_csv("./data/deaths_age_group.csv") %>% 
+  janitor::clean_names() %>% 
+  pivot_wider(
+    names_from = age_group,
+    values_from = opioid_poisoning_deaths
+  ) %>% 
+  janitor::clean_names()
+
+
+deaths_by_year = deaths_age_grp %>% 
+  select(year, region, race_or_ethnicity, sex, total) %>% 
+  group_by(year, race_or_ethnicity) %>% 
+  summarize(
+    count = sum(total)
+  ) %>% 
+  mutate(
+    race_or_ethnicity = factor(race_or_ethnicity, levels = c("Not Stated", "Other Non Hispanic", "Black Non Hispanic", "Hispanic", "White Non Hispanic"))
+  )
+
+deaths_by_year %>% 
+  plot_ly(x = ~year, y = ~count, type = "bar",
+    color = ~race_or_ethnicity, alpha = 0.5)
+```
+
+* We see an exponential increase of opioid poisoning deaths between the ages of 20 and 64 from 2004 and 2016. All other ages remained relatively stable at low levels of opioid related deaths between those years.
+
+```{r, message = FALSE}
+deaths_by_age = read_csv("./data/deaths_age_group.csv") %>% 
+  janitor::clean_names() %>% 
+  select(-region, -race_or_ethnicity, -sex) %>% 
+  filter(age_group != "Total") %>% 
+  group_by(year, age_group) %>% 
+  summarize(
+    count = sum(opioid_poisoning_deaths)
+  ) %>% 
+  ungroup()
+
+deaths_by_age %>% 
+  plot_ly(x = ~year, y = ~count, type = "scatter", mode = "lines+markers",
+    color = ~factor(age_group), alpha = 0.5)
+```
+
+Having looked at who the opioid crisis affects in New York state, we were interested in the areas where people were most affected. Therefore, we looked at the death, treatment and perscription trends by county. From our analysis we were able to glean the following information:
+
+* Suffolk county has the third highest death rate related to opioid poisioning and has the highest number of opioid related treatments and number of pills prescribed by doctors.
+
+* The counties with the greatest number of opioid related treatments also had a large amount of prescribed opioids, but deaths were not so clearly correlated. 
+
+*  The counties with the highest death rates were also heavily urban counties, with the exception of Sullivan and Green county.
+
+```{r, message = FALSE}
+
+total_death = opioid_death_data %>% 
+  group_by(county) %>% 
+  summarize(
+    death_sum = sum(opioid_poisoning_deaths)
+  ) %>% 
+  mutate(
+    county = toupper(county)
+  )
+
+total_pop = county_pop %>% 
+  select (buyer_county, year, population) %>% 
+  rename(county = buyer_county) %>% 
+  group_by(county) %>% 
+  summarize(
+    
+    total_pop = sum(population)
+  )
+
+total_death_pop = left_join(total_death, total_pop) %>% 
+  mutate(
+    county = factor(county),
+    death_pop = death_sum/total_pop* 1000000,
+    county = fct_reorder(county, death_pop)
+  )
+
+total_death_pop %>% 
+  plot_ly(
+    x = ~county, y = ~death_pop, split = ~county,
+    type = 'bar', alpha = 0.5
+  ) %>% 
+    layout(
+    xaxis = list(
+      title = "County"),
+    yaxis = list(
+      title = "Death per 1 Million People"
+    )
+  )
+```
+
     
 _This project was done in collaboration with other students._
