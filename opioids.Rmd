@@ -1,5 +1,5 @@
 ---
-title: "Opioids in NY"
+title: "Opioids in New York"
 output: 
   html_document:
     code_folding: hide
@@ -88,8 +88,18 @@ opioid_demographics %>%
   summarize(
     count = sum(opioid_poisoning_deaths)
   ) %>% 
-  plot_ly(x = ~year, y = ~count, type = "bar",
-          color = ~sex, alpha = 0.5)
+  plot_ly(
+    x = ~year, 
+    y = ~count, 
+    type = "bar", 
+    color = ~sex, 
+    alpha = 0.5) %>% 
+  layout(
+    title = "Opioid Related Deaths by Year and Gender",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Count")
+  )
+
 ```
   
 Non-Hispanic whites are more likely to die of opioid poisoning compared to people of other races/ethnicities, on average. Though there has been an increase in opioid related deaths for all ethnicities, white non-Hispanic people continue to be at higher risk for opioid poisoning.
@@ -116,7 +126,12 @@ deaths_by_year = deaths_age_grp %>%
 
 deaths_by_year %>% 
   plot_ly(x = ~year, y = ~count, type = "bar",
-    color = ~race_or_ethnicity, alpha = 0.5)
+    color = ~race_or_ethnicity, alpha = 0.5) %>% 
+  layout(
+    title = "Opioid Related Deaths by Year and Race",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Count")
+  )
 ```
 
 We see an exponential increase of opioid poisoning deaths between the ages of 20 and 64 from 2004 and 2016. All other ages remained relatively stable at low levels of opioid related deaths between those years.
@@ -134,7 +149,12 @@ deaths_by_age = read_csv("./data/deaths_age_group.csv") %>%
 
 deaths_by_age %>% 
   plot_ly(x = ~year, y = ~count, type = "scatter", mode = "lines+markers",
-    color = ~factor(age_group), alpha = 0.5)
+    color = ~factor(age_group), alpha = 0.5) %>% 
+    layout(
+    title = "Opioid Related Deaths by Year and Age Group",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Count")
+  )
 ```
 
 Below is a graph of the opioid related death rate by county. We see that Schuyler county has the lowest death rate, while Sullivan county has the highest.
@@ -172,6 +192,7 @@ total_death_pop %>%
     type = 'bar', alpha = 0.5
   ) %>% 
     layout(
+      title = "Opioid Related Deaths by County",
     xaxis = list(
       title = "County"),
     yaxis = list(
