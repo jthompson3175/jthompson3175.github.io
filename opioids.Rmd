@@ -33,19 +33,20 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
     amfAR is a non-profit which publishes data related to the HIV epidemic. The data set we utilized contains the average distance from each county to an opioid related treatment facility. 
     
   **New York State Health Data: [Opioid related Treatments and Deaths](<https://health.data.ny.gov>)**
-    This data set details opioid related treatments from, including both inpatient and outpatient treatment for opioid diagnoses from 2010 to 2015. The data is then categorized by county, year, whether the county is urban or rural, and the insurance of the patient. An additional data set in the New York health data which included the number of opioid related deaths from 2003 to 2017 was also utilized. 
+    This dataset details opioid related treatments, including both inpatient and outpatient treatment, for opioid diagnoses from 2010 to 2015. The data is then categorized by county, year, whether the county is urban or rural, and the insurance of the patient. An additional data set in the New York health data which included the number of opioid related deaths from 2003 to 2017 was also utilized. 
   
   **ARCOS Data: [Pills Prescribed by County](<https://github.com/wpinvestigative/arcos-api>)**
-    The ARCOS data set is published by the Washington Post as part of a database which tracks opioid prescriptions from manufacturer to patient between 2006 and 2012. We utilized the data related to the number of pills prescribed to patients in each U.S. county, filtering for the counties in New York state. 
+    The ARCOS dataset is published by the Washington Post as part of a database which tracks opioid prescriptions from manufacturer to patient between 2006 and 2012. We utilized the data related to the number of pills prescribed to patients in each U.S. county, filtering for the counties in New York state. 
     
   **Government Data: [Medication Take-Back Facilities](<https://catalog.data.gov/>)**
     Finally, we used government data which provided the location of medication take-back facilities. This data was limited to counties in New York state, and the distance was mapped against opioid related deaths and treatments. The medication take-back facility data was collected in 2017.
 
 # Exploratory Analysis
 
-We loaded and cleaned the data, filtering by relevant years and joining appropriate datasets. For code on how the animated graphics were generated, you can view the _animated_graphs.rmd_ file [here](<https://github.com/Akbarnejadhn/p8105_fnl_project/blob/master/animated_graphs.Rmd>) on our GitHub repository.
+In our analysis, we created a series of graphs and animations which detail how the opioid crisis is affecting New Yorkers in different areas of the state over time. We broke down the death count by age, race and gender. We see that there are significantly more men than women with opioid related deaths. In recent years that differential has only increased.
 
 ```{r, message = FALSE}
+# read in data #
 
 opioid_death_data = janitor::clean_names(read_csv('./data/opioid_related_deaths_2.csv'))
 
@@ -80,15 +81,7 @@ opioid_er_data = opioid_er_data %>%
 
 opioid_total_data = left_join(opioid_er_data, opioid_death_data, by = c('county', 'year')) %>% 
   arrange(county, year)
-```
 
-In our analysis, we created a series of graphs and animations which detail how the opioid crisis is affecting New Yorkers in different areas of the state over time. The information below is synthesized from the results of our analysis.
-
-Initially, we were interested in how demographics altered opioid addiction over time. We broke down the death count by age, race and gender. The plots, which are included under the demographics tab in analysis, show the following trends related to opioid overdosing.   
-  
-* There are significantly more men than women who die of opioid related deaths. In recent years that differential has only increased.
-
-```{r death_sex, message = FALSE} 
 opioid_demographics %>% 
   filter(region == "NYC") %>% 
   group_by(year, sex) %>% 
@@ -99,7 +92,7 @@ opioid_demographics %>%
           color = ~sex, alpha = 0.5)
 ```
   
-* Non-Hispanic white people are more likely to die of opioid poisoning compared to people of other races/ethnicities, on average. Though there has been an increase in opioid related deaths for all ethnicities, white non-Hispanic people continue to be at higher risk for opioid poisoning.
+Non-Hispanic whites are more likely to die of opioid poisoning compared to people of other races/ethnicities, on average. Though there has been an increase in opioid related deaths for all ethnicities, white non-Hispanic people continue to be at higher risk for opioid poisoning.
      
 ```{r load2, message=FALSE}
 deaths_age_grp = read_csv("./data/deaths_age_group.csv") %>% 
@@ -126,7 +119,7 @@ deaths_by_year %>%
     color = ~race_or_ethnicity, alpha = 0.5)
 ```
 
-* We see an exponential increase of opioid poisoning deaths between the ages of 20 and 64 from 2004 and 2016. All other ages remained relatively stable at low levels of opioid related deaths between those years.
+We see an exponential increase of opioid poisoning deaths between the ages of 20 and 64 from 2004 and 2016. All other ages remained relatively stable at low levels of opioid related deaths between those years.
 
 ```{r, message = FALSE}
 deaths_by_age = read_csv("./data/deaths_age_group.csv") %>% 
@@ -144,13 +137,7 @@ deaths_by_age %>%
     color = ~factor(age_group), alpha = 0.5)
 ```
 
-Having looked at who the opioid crisis affects in New York state, we were interested in the areas where people were most affected. Therefore, we looked at the death, treatment and perscription trends by county. From our analysis we were able to glean the following information:
-
-* Suffolk county has the third highest death rate related to opioid poisioning and has the highest number of opioid related treatments and number of pills prescribed by doctors.
-
-* The counties with the greatest number of opioid related treatments also had a large amount of prescribed opioids, but deaths were not so clearly correlated. 
-
-*  The counties with the highest death rates were also heavily urban counties, with the exception of Sullivan and Green county.
+Below is a graph of the opioid related death rate by county. We see that Schuyler county has the lowest death rate, while Sullivan county has the highest.
 
 ```{r, message = FALSE}
 

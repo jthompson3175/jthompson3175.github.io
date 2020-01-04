@@ -19,4 +19,4 @@ navbar:
       href: http://github.com/jthompson3175/
 output:
   html_document:
-    theme: yeti
+    theme: flatly
