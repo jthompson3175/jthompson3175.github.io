@@ -11,7 +11,7 @@ navbar:
       menu: 
       - text: "Restaurant Inspections"
         href: plotly.html
-      - text: "Opioids"
+      - text: "Opioid Epidemic"
         href: opioids.html
     - icon: fa-envelope fa-lg
       href: mailto:jbennett010@gmail.com

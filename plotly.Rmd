@@ -29,6 +29,7 @@ library(tidyverse)
 library(viridis)
 library(p8105.datasets)
 library(plotly)
+library(stringr)
 data(rest_inspec)
 
 knitr::opts_chunk$set(
@@ -101,3 +102,25 @@ rest_clean %>%
     yaxis = list(title = "Score")
   )
 ```
+
+Finally, I was curious about the proportion of inspections that mention "vermin" both by borough and over time.
+
+```{r, message = FALSE}
+rest_clean %>% 
+  filter(is.na(violation_description) == FALSE) %>% 
+  mutate(
+    contains_vermin = (str_detect(violation_description, "[Vv]ermin"))
+  ) %>% 
+  group_by(boro, year) %>% 
+  summarize(
+    proportion_verm = sum(contains_vermin)/n()*100
+  ) %>% 
+  plot_ly(x = ~year, y = ~proportion_verm, type = "scatter", mode = "lines+markers",
+    color = ~boro, alpha = 0.5) %>% 
+    layout(
+    title = "Percentage of Violation Descriptions Mentioning Vermin by Borough Over Time",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Percentage of Violation Descriptions Mentioning Vermin")
+  )
+```
+
