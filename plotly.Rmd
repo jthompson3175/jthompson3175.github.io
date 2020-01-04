@@ -4,9 +4,10 @@ output:
   html_document:
     toc: true
     toc_float: true
+    code_folding: hide
 ---
 
-## Description of Data
+### Description of Data
 
 The data used were from the NYC Department of Health and Mental Hygiene annual restaurant inspections. Violations of health codes result in the restaurant being given a certain number of points, described below. While the data includes observations from 2012, we exclude them in our analysis because there was not data for each of the 5 boroughs. We include observations on each of the 5 boroughs from 2013 through 2017. Additionally, we exclude restaurants with a grade of NA, or anything that was not an A, B, or C. Some of the restaurants had inspections that were ongoing; these were excluded as well. 
 
@@ -19,26 +20,42 @@ A critical violation, such as improperly washing raw vegetables prior to serving
 A general violation, such as improperly sanitizing cookware, results in a minimum score of 2
 
 
-## Sample Code
+### Analysis
 
-The below code produces the plots for the _Dashboard_ tab above.
+I was interested in how restaurant inspections differed by time and area; the following graphs look into the inspection scores and grades broken down by borough over time.
 
-```{r}
+```{r, message = FALSE}
 library(tidyverse)
 library(viridis)
 library(p8105.datasets)
 library(plotly)
 data(rest_inspec)
+
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	fig.width = 8, 
+  fig.height = 6,
+  out.width = "90%"
+)
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
-```{r}
+The graph below shows the proportion of restaurants in each borough that received an A from 2013 to 2017. In 2013, there were large differences in the proportion of A's, however from 2014 to 2017, all boroughs remained similar. The Bronx had the lowest proportion of A's in 2014, 2015, and 2016, but Staten Island was the lowest in 2017. 
+
+```{r, message = FALSE}
 rest_clean = 
   mutate(rest_inspec, grade_date = as.character(grade_date)) %>% 
   separate(col = grade_date, into = c("year", "month", "day"), sep="-") %>% 
   select(-building, -camis, -street, -zipcode, -phone, -record_date, -violation_code) %>% 
   drop_na(grade, year) %>%
   filter(grade == "A" | grade == "B" | grade == "C", boro != "Missing", year != "2012")
-
 
 rest_clean %>% 
   mutate(
@@ -48,20 +65,39 @@ rest_clean %>%
   summarize(
     proportion_a = sum(is_a)/n()
   ) %>% plot_ly(x = ~year, y = ~proportion_a, type = "scatter", mode = "lines+markers",
-    color = ~boro, alpha = 0.5)
+    color = ~boro, alpha = 0.5) %>% 
+    layout(
+    title = "Proportion of A's by Borough Over Time",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Proportion of A's")
+  )
 ```
 
-```{r}
+Now, looking at count instead of proportion, which gives an idea of the raw number of restaurants in each borough as well. We see the number of restaurants that received an A, B, and C cumulatively between 2013 to 2017.
+
+```{r, message = FALSE}
 rest_clean %>% 
   group_by(grade, boro) %>% 
   summarize(
     n = n()
   ) %>% 
   plot_ly(x = ~boro, y = ~n, type = "bar",
-          color = ~grade, alpha = 0.5)
+          color = ~grade, alpha = 0.5) %>% 
+    layout(
+    title = "Count of Grade by Borough from 2013 to 2017",
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Count")
+  )
 ```
 
-```{r}
+While we might have guessed this from looking at the bar charts above, we see that the distribution of scores is nearly identical for all 5 boroughs. Staten Island is the only notable exception, with a longer right tail, but it is still very similar to the other boroughs with the distribution of scores between 0 and 20 (where the majority of the scores lie).
+
+```{r, message = FALSE}
 rest_clean %>% 
-  plot_ly(x = ~boro, y = ~score, type = "violin")
+  plot_ly(x = ~boro, y = ~score, type = "violin") %>% 
+    layout(
+    title = "Distribution of Numerical Score by Borough from 2013 to 2017",
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Score")
+  )
 ```

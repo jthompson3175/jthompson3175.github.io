@@ -27,7 +27,7 @@ scale_fill_discrete = scale_fill_viridis_d
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
-## Description of Data
+### Description of Data
 
   **amfAR Data: [Distance to Treatment Facility](<https://opioid.amfar.org/about/sources>)**
     amfAR is a non-profit which publishes data related to the HIV epidemic. The data set we utilized contains the average distance from each county to an opioid related treatment facility. 
@@ -41,9 +41,11 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
   **Government Data: [Medication Take-Back Facilities](<https://catalog.data.gov/>)**
     Finally, we used government data which provided the location of medication take-back facilities. This data was limited to counties in New York state, and the distance was mapped against opioid related deaths and treatments. The medication take-back facility data was collected in 2017.
 
-# Exploratory Analysis
+### Exploratory Analysis
 
-In our analysis, we created a series of graphs and animations which detail how the opioid crisis is affecting New Yorkers in different areas of the state over time. We broke down the death count by age, race and gender. We see that there are significantly more men than women with opioid related deaths. In recent years that differential has only increased.
+In our analysis, we created a series of graphs which detail how the opioid crisis is affecting New Yorkers in different areas of the state over time. We broke down the death count by age, race, gender, and county. 
+
+Below, we see that there are significantly more men than women with opioid related deaths. In recent years that differential has only increased.
 
 ```{r, message = FALSE}
 # read in data #
