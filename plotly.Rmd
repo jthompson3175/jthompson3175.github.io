@@ -1,5 +1,5 @@
 ---
-title: "Crime in 2018"
+title: "New York City Restaurant Inspections"
 output: 
   html_document:
     toc: true
@@ -76,7 +76,7 @@ rest_clean %>%
   )
 ```
 
-Now, looking at count instead of proportion, which gives an idea of the raw number of restaurants in each borough as well. We see the number of restaurants that received an A, B, and C cumulatively between 2013 to 2017.
+Now, we will look at count instead of proportion, which gives an idea of the raw number of restaurants in each borough as well. We see the number of restaurants that received an A, B, and C cumulatively between 2013 to 2017.
 
 ```{r, message = FALSE}
 rest_clean %>% 
@@ -135,9 +135,20 @@ leaflet(homicide_data) %>%
 
 leaflet(homicide_data) %>% 
   addTiles() %>% 
-  addCircleMarkers(
+  addMarkers(
     ~longitude, ~latitude,
     popup = ~ offense_type)
+
+homicide_data %>% 
+  group_by(offense_type) %>% 
+  summarize(
+    n = n()
+  ) %>% 
+  plot_ly(x = ~offense_type, y = ~n, type = "bar") %>% 
+  layout(
+    xaxis = list(title = "Offense Type",  tickangle = 45),
+    yaxis = list(title = "Count")
+  )
 
 ```
 
