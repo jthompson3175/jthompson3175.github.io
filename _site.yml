@@ -5,14 +5,14 @@ navbar:
   right:
     - text: "Resume"
       href: resume.html
-    - text: "Dashboard"
-      href: dashboard.html
     - text: "Sample Projects"
       menu: 
       - text: "Restaurant Inspections"
         href: plotly.html
       - text: "Opioid Epidemic"
         href: opioids.html
+      - text: "Crime Dashboard"
+        href: dashboard.html
     - icon: fa-envelope fa-lg
       href: mailto:jbennett010@gmail.com
     - icon: fa-github fa-lg
