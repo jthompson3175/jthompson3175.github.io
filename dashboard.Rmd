@@ -11,58 +11,45 @@ library(flexdashboard)
 library(tidyverse)
 library(viridis)
 library(p8105.datasets)
-
+library(crimedata)
+library(leaflet.extras)
 library(plotly)
 ```
 
 ```{r}
-data(rest_inspec)
-
-rest_clean = 
-  mutate(rest_inspec, grade_date = as.character(grade_date)) %>% 
-  separate(col = grade_date, into = c("year", "month", "day"), sep="-") %>% 
-  select(-building, -camis, -street, -zipcode, -phone, -record_date, -violation_code) %>% 
-  drop_na(grade, year) %>%
-  filter(grade == "A" | grade == "B" | grade == "C", boro != "Missing", year != "2012")
+homicide_data_c = get_crime_data(years = 2018, cities = "Chicago")
+homicide_data_a = get_crime_data(years = 2018, cities = "Austin")
+homicide_data_n = get_crime_data(years = 2018, cities = "New York")
 ```
 
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Proportion of Restaurants with Grade "A" by Year
+### Heat Map of Homicides in Chicago
 
 ```{r}
-rest_clean %>% 
-  mutate(
-    is_a = (grade == "A")
-  ) %>% 
-  group_by(boro, year) %>% 
-  summarize(
-    proportion_a = sum(is_a)/n()
-  ) %>% plot_ly(x = ~year, y = ~proportion_a, type = "scatter", mode = "lines+markers",
-    color = ~boro, alpha = 0.5)
+leaflet(homicide_data_c) %>%
+  addTiles() %>%
+  addHeatmap(lng = ~longitude, lat = ~latitude, radius = 8)
 ```
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Count of Restaurant Grade by Borough
+### Heat Map of Homicides in Austin
 
 ```{r}
-rest_clean %>% 
-  group_by(grade, boro) %>% 
-  summarize(
-    n = n()
-  ) %>% 
-  plot_ly(x = ~boro, y = ~n, type = "bar",
-          color = ~grade, alpha = 0.5)
+leaflet(homicide_data_a) %>%
+  addTiles() %>%
+  addHeatmap(lng = ~longitude, lat = ~latitude, radius = 8)
 ```
 
-### Distribution of Score by Borough
+### Heat Map of Homicides in New York
 
 ```{r}
-rest_clean %>% 
-  plot_ly(x = ~boro, y = ~score, type = "violin")
+leaflet(homicide_data_n) %>%
+  addTiles() %>%
+  addHeatmap(lng = ~longitude, lat = ~latitude, radius = 8)
 ```
 

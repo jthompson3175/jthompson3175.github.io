@@ -1,5 +1,5 @@
 ---
-title: "NYC Restaurant Inspections"
+title: "Crime in 2018"
 output: 
   html_document:
     toc: true
@@ -30,6 +30,8 @@ library(viridis)
 library(p8105.datasets)
 library(plotly)
 library(stringr)
+library(crimedata)
+library(leaflet.extras)
 data(rest_inspec)
 
 knitr::opts_chunk$set(
@@ -113,14 +115,29 @@ rest_clean %>%
   ) %>% 
   group_by(boro, year) %>% 
   summarize(
-    proportion_verm = sum(contains_vermin)/n()*100
+    proportion_verm = sum(contains_vermin)/n()
   ) %>% 
   plot_ly(x = ~year, y = ~proportion_verm, type = "scatter", mode = "lines+markers",
     color = ~boro, alpha = 0.5) %>% 
     layout(
-    title = "Percentage of Violation Descriptions Mentioning Vermin by Borough Over Time",
+    title = "Proportion of Violation Descriptions Mentioning Vermin by Borough Over Time",
     xaxis = list(title = "Year"),
-    yaxis = list(title = "Percentage of Violation Descriptions Mentioning Vermin")
+    yaxis = list(title = "Proportion of Violation Descriptions Mentioning Vermin")
   )
+```
+
+```{r}
+homicide_data = get_crime_data(years = 2018, cities = "Chicago")
+
+leaflet(homicide_data) %>%
+  addTiles() %>%
+  addHeatmap(lng = ~longitude, lat = ~latitude, radius = 8)
+
+leaflet(homicide_data) %>% 
+  addTiles() %>% 
+  addCircleMarkers(
+    ~longitude, ~latitude,
+    popup = ~ offense_type)
+
 ```
 
