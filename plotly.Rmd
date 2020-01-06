@@ -1,5 +1,5 @@
 ---
-title: "New York City Restaurant Inspections"
+title: "New York Restaurant Inspections"
 output: 
   html_document:
     toc: true
@@ -124,31 +124,5 @@ rest_clean %>%
     xaxis = list(title = "Year"),
     yaxis = list(title = "Proportion of Violation Descriptions Mentioning Vermin")
   )
-```
-
-```{r}
-homicide_data = get_crime_data(years = 2018, cities = "Chicago")
-
-leaflet(homicide_data) %>%
-  addTiles() %>%
-  addHeatmap(lng = ~longitude, lat = ~latitude, radius = 8)
-
-leaflet(homicide_data) %>% 
-  addTiles() %>% 
-  addMarkers(
-    ~longitude, ~latitude,
-    popup = ~ offense_type)
-
-homicide_data %>% 
-  group_by(offense_type) %>% 
-  summarize(
-    n = n()
-  ) %>% 
-  plot_ly(x = ~offense_type, y = ~n, type = "bar") %>% 
-  layout(
-    xaxis = list(title = "Offense Type",  tickangle = 45),
-    yaxis = list(title = "Count")
-  )
-
 ```
 

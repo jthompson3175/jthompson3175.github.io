@@ -10,13 +10,15 @@ output:
 library(flexdashboard)
 library(tidyverse)
 library(viridis)
-library(crimedata)
+#library(crimedata)
 library(leaflet.extras)
 library(plotly)
 ```
 
 ```{r}
-homicide_data = get_crime_data(years = 2018, cities = "Chicago")
+#homicide_data = get_crime_data(years = 2018, cities = "Chicago")
+#write_csv(homicide_data, "./data/crime_chicago.csv")
+crime = read_csv("./data/crime_chicago.csv")
 ```
 
 
@@ -26,7 +28,7 @@ Column {data-width=600}
 ### Heat Map of Crime in Chicago
 
 ```{r}
-leaflet(homicide_data) %>%
+leaflet(crime) %>%
   addTiles() %>%
   addHeatmap(lng = ~longitude, lat = ~latitude, radius = 8)
 ```
@@ -37,7 +39,7 @@ Column {data-width=400}
 ### Marked Map of Crime in Chicago
 
 ```{r}
-leaflet(homicide_data) %>% 
+leaflet(crime) %>% 
   addTiles() %>% 
   addMarkers(
     ~longitude, ~latitude,
@@ -47,15 +49,18 @@ leaflet(homicide_data) %>%
 ### Crime Type in Chicago
 
 ```{r}
-homicide_data %>% 
+crime %>% 
   group_by(offense_type) %>% 
   summarize(
     n = n()
   ) %>% 
-  plot_ly(x = ~offense_type, y = ~n, type = "bar") %>% 
+  mutate(
+    offense_type = fct_reorder(offense_type, n)
+  ) %>%
+  plot_ly(y = ~offense_type, x = ~n, type = "bar", orientation= "h") %>% 
   layout(
-    xaxis = list(title = "Offense Type",  tickangle = 45),
-    yaxis = list(title = "Count")
+    yaxis = list(title = "Offense Type",  tickangle = 25),
+    xaxis = list(title = "Count")
   )
 ```
 
