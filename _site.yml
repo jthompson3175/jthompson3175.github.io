@@ -7,8 +7,8 @@ navbar:
       href: resume.html
     - text: "Sample Projects"
       menu: 
-      - text: "Restaurant Inspections"
-        href: plotly.html
+      - text: "COVID-19"
+        href: covid_visualization.html
       - text: "Opioid Epidemic"
         href: opioids.html
       - text: "Crime Dashboard"
