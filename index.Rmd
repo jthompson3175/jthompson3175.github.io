@@ -27,15 +27,15 @@ You can find me on LinkedIn [here](https://www.linkedin.com/in/julia-b-thompson/
 
 Visit the [resume](resume.html) section learn more about my relevant experience.
 
-Feel free to contact me via email, or visit my GitHub repository liked above.
+Feel free to contact me via email, or visit my GitHub repository linked above.
 
 <br clear="all">
 
 ## Sample Projects Overview
 
-There are three sample projects provided above, which give some idea of my data management and visualization capabilities. The restaurant inspections and opioid epidemic analyses include my code, which can me revealed by clicking the _code_ buttom on the right side of the page.  
+There are three sample projects provided above, which give some idea of my data management and visualization capabilities. The COVID-19 visualizations and opioid epidemic analyses include my code, which can me revealed by clicking the _code_ buttom on the right side of the page.  
 
-First, I explored [restaurant inspections](plotly.html) in New York. This data was publicly available, and I was primarily interested in looking at how scores differed by borough over time. How many and what proportion of boroughs got A's, B's, and C's? Did this change between 2013 to 2017? The dataset contains information on the description of the restaurant's violation, so I also looked into the proportion that mentioned _vermin_ in the violation. 
+First, I explored the [COVID-19](covid_visualization.html) data in New York from 2/29 to 5/25. This data was publicly available, and I was primarily interested in re-creating many of the charts I'd seen in the news. I also paired the NYC Health Department data with data from the 2010 Census to look at the case rate by proportion of White householders. 
 
 Additionally, I investivated trends trends in the [opioid epidemic](opioids.html) in New York from a demographic standpoint, as part of a larger project. The opioid epidemic is a national crisis. Every day in the U.S., more than 130 people die from an opioid overdose. I focused on opioid-related deaths, categorizing by gender, race, age group, and county.
 

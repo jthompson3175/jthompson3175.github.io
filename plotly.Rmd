@@ -27,10 +27,8 @@ I was interested in how restaurant inspections differed by time and area; the fo
 ```{r, message = FALSE}
 library(tidyverse)
 library(viridis)
-library(p8105.datasets)
 library(plotly)
 library(stringr)
-data(rest_inspec)
 
 knitr::opts_chunk$set(
 	echo = TRUE,
@@ -53,10 +51,11 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 The graph below shows the proportion of restaurants in each borough that received an A from 2013 to 2017. In 2013, there were large differences in the proportion of A's, however from 2014 to 2017, all boroughs remained similar. The Bronx had the lowest proportion of A's in 2014, 2015, and 2016, but Staten Island was the lowest in 2017. 
 
 ```{r, message = FALSE}
+
+rest_inspec = read_csv("./data/nyc_inspec.csv")
 rest_clean = 
   mutate(rest_inspec, grade_date = as.character(grade_date)) %>% 
   separate(col = grade_date, into = c("year", "month", "day"), sep="-") %>% 
-  select(-building, -camis, -street, -zipcode, -phone, -record_date, -violation_code) %>% 
   drop_na(grade, year) %>%
   filter(grade == "A" | grade == "B" | grade == "C", boro != "Missing", year != "2012")
 

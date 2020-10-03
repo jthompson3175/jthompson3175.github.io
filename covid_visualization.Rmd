@@ -1,0 +1,128 @@
+---
+title: "New York City COVID-19"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+library(readxl)
+library(plotly)
+library(tidyverse)
+```
+
+### Description of Data
+
+COVID data comes from the 5/25/20 update of the NYC Health Department's [GitHub repository](https://github.com/nychealth/coronavirus-data). The data does not contain information on probable cases and deaths, only those which are confirmed. Geographic information is captured using modified ZIP Code Tabulation Areas (ZCTA), which combines census blocks with smaller populations to allow more stable estimates of population size for rate calculations. The ZCTA geography was developed by the U.S. Census Bureau. 
+
+Race of householder by ZCTA was gathered from the [2010 U.S. Census](https://data.census.gov/cedsci/table?g=0400000US36.871000&tid=DECENNIALSF12010.H6&hidePreview=false&vintage=2010&layer=VT_2010_040_00_PY_D1&cid=P001001). While this is somewhat outdated, we can still use the proportions to get a decent idea of the race breakdown within each ZCTA. 
+
+```{r}
+data = read_excel("./data/nyc_covid.xlsx")
+```
+
+### Data Overview
+
+Below is the data set from NYC.gov, which shows the cases, hospitalizations, and deaths for each day since February 29, 2020. You can use the search bar to find a specific date, and can sort using the grey arrows beside each column.
+
+```{r}
+data = data %>% 
+  mutate(
+    `Cumulative Case Count` = cumsum(CASE_COUNT)
+  ) %>% 
+  rename(Date = DATE_OF_INTEREST,
+         `Case Count` = CASE_COUNT,
+         `Hospitalized Count` = HOSPITALIZED_COUNT,
+         `Death Count` = DEATH_COUNT) %>% 
+  select(Date, `Case Count`, `Cumulative Case Count`, everything()) %>% 
+  mutate(
+    Date = as.Date(Date, format = "%Y-%m-%d")
+  )
+
+DT::datatable(data, options = list(pageLength = 15, filter = "none"), rownames = FALSE)
+```
+
+### Visualization
+
+#### Cases by Day
+
+The graph below shows the number of new cases recorded each day from February 29, 2020 to May 25, 2020. 
+
+```{r}
+data %>% 
+  plot_ly(x = ~Date, y = ~`Case Count`, type = "bar") %>% 
+  layout(
+    title = "Count of Cases by Date",
+    xaxis = list(title = "Date"),
+    yaxis = list(title = "Case Count")
+  )
+```
+
+#### Cumulative Cases by Day
+
+Now we can visualize the cumulative number of cases, again from February 29, 2020 to May 25, 2020.
+
+```{r}
+data %>% 
+  plot_ly(x = ~Date, y = ~`Cumulative Case Count`, type = "bar") %>% 
+  layout(
+    title = "Cumulative Cases by Date",
+    xaxis = list(title = "Date"),
+    yaxis = list(title = "Cumulative Case Count")
+  )
+```
+
+#### Cases by ZCTA and Race of Householder
+
+As noted at the beginning of this page, the proportion of householders who are White was calculated from the 2010 U.S. Census, and might have changed. You can search for your neighborhood, or sort alphabetically or in increasing/decreasing order.
+
+```{r}
+by_zip = read_excel("./data/nyc_covid_by_zcta.xlsx") %>% 
+  rename(zcta = MODIFIED_ZCTA)
+
+race = read_csv("./data/householder_race_zcta.csv")
+
+zip_race = 
+  left_join(by_zip, race, by = "zcta")
+
+zip_race = zip_race %>% 
+  mutate(
+    prop_white = round((`Householder who is White alone`/Total)*100,2),
+    prop_black = (`Householder who is Black or African American alone`/Total)*100,
+    prop_asian = (`Householder who is Asian alone`/Total)*100,
+    prop_other = (`Householder who is Some Other Race alone`/Total)*100,
+    prop_multiple = (`Householder who is Two or More Races`/Total)*100
+  ) %>% 
+  select(-(Total):-(`Householder who is Two or More Races`))
+
+zip_race_selection = zip_race %>% 
+  select(zcta, NEIGHBORHOOD_NAME, COVID_CASE_RATE, prop_white) %>% 
+  rename(ZCTA = zcta,
+         Neighborhood = NEIGHBORHOOD_NAME, 
+         `Case Rate` = COVID_CASE_RATE, 
+         `Proportion Householders: White` = prop_white)
+
+DT::datatable(zip_race_selection, options = list(pageLength = 15, filter = "none"), rownames = FALSE)
+```
+
+#### Cases by Proportion of Householders who are White
+
+This scatterplot shows a downward trend, higher case rate tend to have lower proportions of white householders. We can test the correlation coefficient to help quantify this relationship.
+
+```{r}
+plot_ly(data = zip_race, x = ~prop_white, y = ~COVID_CASE_RATE, type = "scatter", mode = "markers") %>% 
+  layout(
+    title = "Case Rate by Proportion of White Householders",
+    xaxis = list(title = "Proportion of White Householders"),
+    yaxis = list(title = "Case Rate")
+  )
+```
+
+Testing the correlation coefficient, we obtain a Rho of -0.43 and an associated p-value of $2.7*10^{-9}$. This indicates that case rate is negatively correlated with proportion of white householders in the ZCTA, and the correlation is statistically significant. A higher case rate is associated with a lower proportion of white householders.    
+
+```{r, comment = ""}
+cor.test(zip_race$COVID_CASE_RATE, zip_race$prop_white, method = "spearman") 
+```

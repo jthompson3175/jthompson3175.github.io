@@ -11,11 +11,11 @@ output:
 
 ### EDUCATION
 
-Master of Science in Biostatistics
+**Master of Science in Biostatistics**
 
 Columbia University Mailman School of Public Health	_May 2021_
 
-Bachelor of Science in Public Health in Biostatistics
+**Bachelor of Science in Public Health in Biostatistics**
 
 University of North Carolina at Chapel Hill Gillings School of Global Public Health _May 2018_
 
@@ -23,15 +23,23 @@ Major GPA: 4.0 | Overall GPA: 3.467 | Dean’s List: 3 semesters
 
 ### EXPERIENCE	
 
-Data Science Intern
+**Teaching Assistant: Statistical Computing with SAS**
 
-Global Healthy Living Foundation _December 2019 to Present_
+Columbia University Mailman School of Public Health _August 2020 to December 2020_
 
-* Clean, analyze, and interpret data from patient-centered research 
+* Lead small group sessions during each week’s lectures, as well as hold office hours and grade homework assignments
 
-* Assist in the dissemination of research results to patient populations and various journals
+**Data Science Intern**
 
-Analyst
+Global Healthy Living Foundation _December 2019 to September 2020_
+
+* Responsible for cleaning, analyzing, and interpreting data from patient-centered research 
+
+* Assisted in the dissemination of research results to patient populations and various journals
+
+* Built a logistic regression model of medical marijuana use among rheumatic and musculoskeletal disease patients
+
+**Analyst**
 
 Corvid Technologies	_June 2018 to June 2019_
 
@@ -39,15 +47,15 @@ Corvid Technologies	_June 2018 to June 2019_
 
 * Developed ways to streamline internal accounting and finance processes
 
-Research Presentation _October 2016_
+**Research Presentation**
 
-International Conference of Undergraduate Research,
-
-International Conference on Advances in Interdisciplinary Statistics and Combinatorics
+International Conference of Undergraduate Research, International Conference on Advances in Interdisciplinary Statistics and Combinatorics
+_October 2016_
 
 * Explained copy number variation algorithm creation process, relevance, and validation as well as presented findings from a series of breast cancer trials	
 
-Research Education for Undergraduates in Mathematical Biology
+**Research Education for Undergraduates in Mathematical Biology**
+
 University of North Carolina at Greensboro	_May 2016 to August 2016_
 
 *	Developed an algorithm for detecting significant copy number variations across patient using R
@@ -56,7 +64,7 @@ University of North Carolina at Greensboro	_May 2016 to August 2016_
 
 ### LEADERSHIP AND ACTIVITIES	
 
-President and Founder
+**President and Founder**
 
 Carolina Cystic Fibrosis Friends	_December 2014 to May 2018_
 
@@ -64,20 +72,22 @@ Carolina Cystic Fibrosis Friends	_December 2014 to May 2018_
 
 *	Helped raise over $30,000 for Cystic Fibrosis research	
 
-VP of Marketing Student United Way	_October 2015 to May 2018_
+**VP of Marketing** 
+
+Student United Way	_October 2015 to May 2018_
 
 * Designed and enacted advertising campaigns to promote the club and service opportunities for all students
 
-Study Abroad Dublin Ireland	_May 2017 to August 2017_
+**Study Abroad** 
+
+Dublin Ireland	_May 2017 to August 2017_
 
 *	Studied genetics and Irish mythology 	
 
 ### TECHNICAL SKILLS
 
-Working Knowledge: R, SAS, Excel, Visual Basic, Microsoft Office 
-
-Introductory Knowledge: MatLab, C, Python, LaTeX
+R | SAS | SQL | LaTeX | Microsoft Office | Microsoft Excel | Visual Basic
 
 ### RELEVANT COURSEWORK
 
-Biostatistical Methods | Data Science | Principals of Experimental Analysis | Epidemiology | Elementary Probability and Statistical Inference | Linear Algebra | Sample Survey Methodology
+Biostatistical Methods | Data Science | Principals of Experimental Analysis | Epidemiology | Elementary Probability and Statistical Inference | Linear Algebra | Sample Survey Methodology | Causal Inference | Advanced Statistical and Computational Methods in Genetics and Genomics | Longitudinal Data Analysis | Introduction to Randomized Clinical Trials
