@@ -7,87 +7,88 @@ output:
 ---
 
 
-525 West 158th St. New York, NY | 336.687.3514 | julia.thompson@columbia.edu 
+5 West 101st St New York, NY 10025 | 336.687.3514 | julia.thompson@columbia.edu 
 
 ### EDUCATION
 
-**Master of Science in Biostatistics**
+**Columbia University Mailman School of Public Health**
 
-Columbia University Mailman School of Public Health	_May 2021_
+Master of Science, Biostatistics	_Expected May 2021_
 
-**Bachelor of Science in Public Health in Biostatistics**
+Current GPA: 3.667
 
-University of North Carolina at Chapel Hill Gillings School of Global Public Health _May 2018_
+**University of North Carolina at Chapel Hill Gillings School of Global Public Health**
+
+Bachelor of Science in Public Health, Biostatistics _May 2018_
 
 Major GPA: 4.0 | Overall GPA: 3.467 | Dean’s List: 3 semesters
 
 ### EXPERIENCE	
 
-**Teaching Assistant: Statistical Computing with SAS**
+**Columbia University Mailman School of Public Health**, New York, NY
 
-Columbia University Mailman School of Public Health _August 2020 to December 2020_
+Teaching Assistant: Statistical Computing with SAS _August 2020 to December 2020_
 
-* Lead small group sessions during each week’s lectures, as well as hold office hours and grade homework assignments
+* Lead groups of 10 students each week to answer questions regarding course material and homework
 
-**Data Science Intern**
+* Hold office hours once per week to assess and troubleshoot coding problems the students might have
 
-Global Healthy Living Foundation _December 2019 to September 2020_
+* Grade and provide feedback on homework assignments and midterm exams for the class of 35 students
 
-* Responsible for cleaning, analyzing, and interpreting data from patient-centered research 
+**Global Healthy Living Foundation**, New York, NY
 
-* Assisted in the dissemination of research results to patient populations and various journals
+Data Science Intern _December 2019 to September 2020_
 
-* Built a logistic regression model of medical marijuana use among rheumatic and musculoskeletal disease patients
+* Cleaned, analyzed, and interpreted data for chronic disease studies using SAS and R. Completed 15 short-term and 10 long-term statistical analysis projects during my internship, ranging from building regression models and performing hypothesis tests to creating presentations and reports
 
-**Analyst**
+* Spearheaded weekly dissemination of study results through email, webinars, and infographics to key stakeholders
 
-Corvid Technologies	_June 2018 to June 2019_
+* Wrote several procedures in MySQL to combine results across patient platforms and improve insights
 
-* Created a cashflow analysis tool for predictions and insight into the company’s accounts, reducing the finance team’s time investment by 15%
+* Contributed to writing and analysis of various manuscripts for publication, including one currently under review in Arthritis Research and Therapy: _Marijuana and Cannabidiol for Medical Use in Rheumatic and Musculoskeletal Disease: Patients’ Perceptions, Behaviors and Health Information Needs_
 
-* Developed ways to streamline internal accounting and finance processes
+**Corvid Technologies**, Charlotte, NC
 
-**Research Presentation**
+Analyst	_June 2018 to June 2019_
 
-International Conference of Undergraduate Research, International Conference on Advances in Interdisciplinary Statistics and Combinatorics
-_October 2016_
+* Created a cash flow analysis tool for predictions and insight into the company’s accounts, automating email updates to the CEO and CFO and reducing the finance team’s time investment by approximately 15%
 
-* Explained copy number variation algorithm creation process, relevance, and validation as well as presented findings from a series of breast cancer trials	
+* Identified inefficiencies and developed ways to streamline internal accounting and finance processes
 
-**Research Education for Undergraduates in Mathematical Biology**
+**University of North Carolina at Greensboro**, Greensboro, NC
 
-University of North Carolina at Greensboro	_May 2016 to August 2016_
+Research Education for Undergraduates in Mathematical Biology _May 2016 to August 2016_
 
-*	Developed an algorithm for detecting significant copy number variations across patient using R
+* Developed and tested an algorithm for detecting significant copy number variations across patients using R 
 
-*	Tested the algorithm through simulations and real data comparisons to other methods 	
+* Presented research findings at the International Conference of Undergraduate Research and the International Conference on Advances in Interdisciplinary Statistics and Combinatorics
 
 ### LEADERSHIP AND ACTIVITIES	
 
-**President and Founder**
+**Carolina Cystic Fibrosis Friends**, Chapel Hill, NC
 
-Carolina Cystic Fibrosis Friends	_December 2014 to May 2018_
+President and Founder	_December 2014 to May 2018_
 
-* Managed a club that partnered with UNC Hospitals and volunteered with adult Cystic Fibrosis patients, visiting 8-10 patients and families per month
+* Founded and managed a club that partnered with UNC Hospitals and volunteered with adult Cystic Fibrosis patients, visiting 8-10 patients and families per month, and seasonally decorating the waiting rooms
 
-*	Helped raise over $30,000 for Cystic Fibrosis research	
+* Raised over $30,000 for Cystic Fibrosis research through campus events and community partnerships
 
-**VP of Marketing** 
+**Student United Way**, Chapel Hill, NC 
 
-Student United Way	_October 2015 to May 2018_
+VP of Marketing	_October 2015 to May 2018_
 
 * Designed and enacted advertising campaigns to promote the club and service opportunities for all students
 
-**Study Abroad** 
+**Study Abroad**, Dublin, Ireland 
 
-Dublin Ireland	_May 2017 to August 2017_
+Student	_May 2017 to August 2017_
 
 *	Studied genetics and Irish mythology 	
 
 ### TECHNICAL SKILLS
 
-R | SAS | SQL | LaTeX | Microsoft Office | Microsoft Excel | Visual Basic
+R | SAS | SQL | LaTeX | Microsoft Office (Excel, PowerPoint, Word) | Visual Basic
 
 ### RELEVANT COURSEWORK
 
-Biostatistical Methods | Data Science | Principals of Experimental Analysis | Epidemiology | Elementary Probability and Statistical Inference | Linear Algebra | Sample Survey Methodology | Causal Inference | Advanced Statistical and Computational Methods in Genetics and Genomics | Longitudinal Data Analysis | Introduction to Randomized Clinical Trials
+Biostatistical Methods | Data Science | Epidemiology | Statistical Inference | Causal Inference | Statistical Inference | Sample Survey Methodology | Relational Databases and SQL | Randomized Clinical Trials | Computational Methods for Genetics and Genomics | Longitudinal Data Analysis | Probability Theory | Multidisciplinary Perspective on HIV/AIDS | Statistical Computing with SAS
